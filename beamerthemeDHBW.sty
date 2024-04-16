@@ -1,0 +1,215 @@
+\ProvidesPackage{beamerthemeDHBW}[2015/06/08]
+
+%width was: 27.517
+\usepackage[size=custom,width=34,height=19.125,scale=1,orientation=portrait]{beamerposter} 
+\setbeamersize{text margin left=2.12cm,text margin right=1.7585cm}
+
+\usepackage{ifthen}
+
+\definecolor{DHBWrot}{RGB}{226,0,26}
+\definecolor{DHBWgrau}{RGB}{0,0,0}
+\definecolor{DHBWhellgrau}{RGB}{124,135,141}
+\definecolor{DHBWrotgrau}{RGB}{137,3,19}
+
+\pgfdeclareimage[height=1.56cm]{DHBWlogo_klein}{images/dhbw-horb} % Hier das Logo der DHBW angeben (ohne Dateiendung)
+\pgfdeclareimage[height=2.39cm]{DHBWlogo_gross}{images/dhbw-horb} % Hier das Logo der DHBW angeben (ohne Dateiendung)
+\pgfdeclareimage[height=4.6cm,width=\paperwidth]{titel_bg}{images/DHBWtitel_bg}
+\pgfdeclareimage[height=0.45cm]{itemize_items}{images/DHBW_itemize_items}
+\pgfdeclareimage[height=0.45cm]{itemize_subitem}{images/DHBW_itemize_subitem}
+
+\newcommand\DHBWurl{\internetadresse}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Befehl um Kapitel und Unterkapitel auf den Folien anzuzeigen 
+% (Verwendung duch \zeigeKapitel am Anfang eines \begin{frame})
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\zeigeKapitel{
+	\begin{textblock*}{237.1mm}(21.2mm,40.2mm)
+	{\fontsize{12}{0}\selectfont\usebeamercolor[fg]{section}\insertsection}% Kapitel
+	\vskip.5ex %Zeilenumbruch
+	{\fontsize{22}{0}\selectfont\usebeamercolor[fg]{subsection}\insertsubsection}% Unterkapitel
+	
+	% Frametitle kann experimentell eingeblendet werden - ist eigentlich nicht vorgesehen!
+	{\fontsize{15}{0}\selectfont\usebeamercolor[fg]{subsection}\insertframetitle}% Frametitle
+	\end{textblock*}
+	\vskip27.5mm% Abstand von oben vor Folieninhalt
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Befehl um Kopfzeile und Fußzeile auf den Folien anzuzeigen.
+% Wird im Abschnitt Outer theme verwendet.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\HeadlineFootline{
+	\setbeamertemplate{headline}{%
+		\ifnum\c@framenumber<2% Titlefolie ohne Kopfzeile
+		\else
+	    	\pgftext[left, top, at={\pgfpoint{15.6mm}{-7.7mm}}]{\pgfuseimage{DHBWlogo_klein}}
+			\begin{textblock*}{\paperwidth}(0mm,13.9mm)
+			\hfill\fontsize{12}{0}\selectfont\usebeamercolor[fg]{headline}\insertshortdate\hspace{1.7585cm} % rechtsbündig das Datum der Präsentation
+			\end{textblock*}
+			\begin{textblock*}{0mm}(117.5mm,19mm)
+			\noindent\rule{205.174mm}{0.4pt}
+			\end{textblock*}
+			\begin{textblock*}{\paperwidth}(0mm,22.5mm)
+			\fontsize{12}{0}\selectfont\usebeamercolor[fg]{headline}
+				%\hspace{12cm}\insertsection
+				\hfill\insertshorttitle\hspace{1.7585cm} % rechtsbündig der Titel der Präsentation
+			\end{textblock*}
+		\fi
+		\vskip27.2mm% Abstand von oben vor Folieninhalt
+		%\vskip40.2mm% Abstand von oben vor Folieninhalt
+	}
+	\setbeamertemplate{footline}{%
+		\ifnum\c@framenumber<2% Titlefolie ohne Fußzeile
+		\else
+			\begin{textblock*}{0mm}(17mm,173.53mm)
+			\noindent\rule{306.205mm}{0.4pt}
+			\end{textblock*}
+			\begin{textblock*}{\paperwidth}(0mm,177.3mm)
+			\hfill\fontsize{12}{0}\selectfont\usebeamercolor[fg]{footline}\insertsection\hspace{.5em}
+			\textbar\hspace{.5em} \insertframenumber\hspace{1.7585cm} % rechtsbündig die Foliennummer
+			\end{textblock*}
+		\fi
+    	\vspace{1.5cm} % unterer Rand des Folieninhalts
+	}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Title Page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{title page}
+{
+\begin{textblock*}{\paperwidth}(14.4mm,7mm)
+	\pgfuseimage{DHBWlogo_gross}
+\end{textblock*}
+
+\begin{textblock*}{\paperwidth}(0mm,58.3mm)
+	\begin{center}
+	{\usebeamerfont{title}\fontsize{46}{0}\selectfont\usebeamercolor[fg]{title}\inserttitle}
+	\end{center}
+\end{textblock*}
+
+\begin{textblock*}{192.7mm}(62.9mm,99mm)
+	{\usebeamerfont{subtitle}\fontsize{25}{0}\selectfont\usebeamercolor[fg]{subtitle}\insertsubtitle}
+\end{textblock*}
+
+\begin{textblock*}{162.9mm}(63.5mm,114.3mm)
+	{\usebeamerfont{author}\fontsize{15}{0}\selectfont\usebeamercolor[fg]{author}\insertauthor}
+\end{textblock*}
+
+\begin{textblock*}{\paperwidth}(0mm,133.4mm)
+\pgfuseimage{titel_bg}
+\end{textblock*}
+
+\begin{textblock*}{\paperwidth}(0mm,149.5mm)
+	\begin{center}
+		{\fontsize{20}{12} \selectfont \color{white} \textbf{\DHBWurl}}
+	\end{center}
+\end{textblock*}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Outer theme
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\useoutertheme{default}
+\HeadlineFootline
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Inner Theme
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\useinnertheme{rectangles}
+\setbeamertemplate{navigation symbols}{} % Navigationssymbole sind ausgeblendet
+
+% Setzen der Einzüge bei Aufzählungen
+%\setlength{\leftmargini}{.5em}
+%\setlength{\leftmarginii}{1.0em}
+%\setlength{\leftmarginiii}{1.5em}
+%\setlength{\leftmarginiv}{2.0em}
+%\setlength{\leftmarginv}{2.5em}
+%\setlength{\leftmarginvi}{3.0em}
+
+\setbeamertemplate{itemize items}{\pgfuseimage{itemize_items}}% Aufzählungszeichen
+\setbeamertemplate{itemize subitem}{\pgfuseimage{itemize_subitem}}% Aufzählungszeichen Unterpunkte
+\setbeamertemplate{itemize subsubitem}{\pgfuseimage{itemize_subitem}}% Aufzählungszeichen Unter-Unterpunkt
+
+\setbeamertemplate{frametitle}{\normalsize \insertframetitle} %Frametitle ausgeblendet (wird nicht verwendet!)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Setzen der Schriftgrößen für verschiedene Folieninhalte
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{block begin}{%
+	\fontsize{13}{14.3}{\selectfont\usebeamercolor[fg]{block title}\textbf{\insertblocktitle}}%
+	\vskip.5ex %
+	%\begin{beamercolorbox}{DHWBgrau}%
+	\fontsize{13}{14.3}\selectfont\usebeamercolor[fg]{block body}
+}
+\setbeamertemplate{block end}{%
+	%\end{beamercolorbox}\vskip\smallskipamount
+	\hfill\null%
+}
+
+\setbeamertemplate{block alerted begin}{%
+	\fontsize{13}{14.3}\selectfont\usebeamercolor[fg]{block title}\textbf{\insertblocktitle}
+	\vskip.5ex %
+	\fontsize{13}{14.3}\selectfont\usebeamercolor[fg]{block alerted body}
+}
+\setbeamertemplate{block alerted end}{%
+	\hfill\null%
+}
+
+\setbeamertemplate{block example begin}{%
+	\fontsize{13}{14.3}\selectfont\usebeamercolor[fg]{block title}\textbf{\insertblocktitle}
+	\vskip.5ex %
+	\fontsize{13}{14.3}\selectfont\usebeamercolor[fg]{block example body}
+}
+\setbeamertemplate{block example end}{%
+	\hfill\null%
+}
+
+\setbeamertemplate{itemize/enumerate body begin}{\setlength{\labelwidth}{10ex}
+	%\fontsize{17}{14.3}
+        \selectfont\usebeamercolor[fg]{block itemize body}
+}
+\setbeamertemplate{itemize/enumerate body end}{%
+	\hfill\null%
+}
+\setbeamertemplate{itemize/enumerate subbody begin}{
+	%\fontsize{13}{14.3}
+        \selectfont\usebeamercolor[fg]{block itemize body}
+}
+\setbeamertemplate{itemize/enumerate subbody end}{%
+	\hfill\null%
+}
+\setbeamertemplate{itemize/enumerate subsubbody begin}{
+	\fontsize{13}{14.3}\selectfont\usebeamercolor[fg]{block itemize body}
+}
+\setbeamertemplate{itemize/enumerate subsubbody end}{%
+	\hfill\null%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (Schrift-)Farben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usecolortheme[named=DHBWgrau]{structure}
+\setbeamercolor{title page}{fg=DHBWgrau, bg=white}
+\setbeamercolor{logo}{bg=DHBWrot}
+\setbeamercolor{title}{fg=DHBWgrau,bg=white}
+\setbeamercolor{subtitle}{fg=DHBWgrau,bg=white}
+\setbeamercolor{author}{fg=DHBWgrau,bg=white}
+\setbeamercolor{date}{fg=DHBWgrau,bg=white}
+\setbeamercolor{shorttitle}{fg=DHBWgrau,bg=white}
+\setbeamercolor{frametitle}{fg=DHBWrot,bg=white}
+\setbeamercolor{headline}{fg=DHBWgrau,bg=white}
+\setbeamercolor{footline}{fg=DHBWgrau,bg=white}
+\setbeamercolor{section}{fg=DHBWrot,bg=white}
+\setbeamercolor{subsection}{fg=DHBWgrau,bg=white}
+\setbeamercolor{enumerate item}{bg=white,fg=DHBWrot}
+\setbeamercolor{description item}{bg=white,fg=DHBWrot}
+\setbeamercolor{item projected}{bg=DHBWrot,fg=white}
+\setbeamercolor{block title}{bg=white,fg=DHBWgrau}
+\setbeamercolor{block body}{bg=white,fg=DHBWgrau}
+\setbeamercolor{block alerted body}{bg=white,fg=DHBWrau}
+\setbeamercolor{block example body}{bg=white,fg=DHBWgrau}
+\setbeamercolor{block itemize body}{bg=white,fg=DHBWgrau}
+\setbeamercolor*{block title example}{bg=white,fg=DHBWgrau}
+\setbeamercolor*{block body example}{bg=white,fg=DHBWgrau}
