@@ -147,12 +147,12 @@ javac src/main/java/de/dhbwstuttgart/typedeployment/TypeInsert.java src/main/jav
 \begin{frame}[fragile]{Bugs}
     \begin{center}
         \begin{tikzpicture} \begin{axis}[ ybar, enlargelimits=0.15, legend style={at={(0.
-                                5,-0.3)}, anchor=north,legend columns=-1}, ylabel={Anzahl}, symbolic x
-                coords={Bugs,Requests}, xtick=data, nodes near coords, nodes near coords
-                align={vertical}, width=0.9\textwidth, height=10cm, bar width=3cm] 
-                \addplot coordinates {(Bugs,7) (Requests,9) };
-                \addplot coordinates {(Bugs,3) (Requests,1) };
-                \legend{open,closed}
+                                5,-0.3)}, anchor=north,legend columns=-1}, ylabel={amount}, symbolic x
+                coords={open,closed}, xtick=data, nodes near coords, nodes near coords
+                align={vertical}, width=0.7\textwidth, height=10cm, bar width=2cm] 
+                \addplot coordinates {(open,1) (closed,25) };
+                \addplot coordinates {(open,3) (closed,18) };
+                \legend{Bugs,Feature Requests}
             \end{axis} 
         \end{tikzpicture}
     \end{center}
